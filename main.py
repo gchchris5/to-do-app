@@ -1,20 +1,26 @@
 prompt = "Type add, show, edit, complete or exit: "
-items = []
 while True:
     user_input = input(prompt)
     user_input = user_input.strip()
     user_input = user_input.lower()
     if user_input == "add":
         add_item = input("Add an item: ") + '\n'
+        file = open("to-do.txt", "r")
+        items = file.readlines()
+        file.close()
         items.append(add_item.capitalize())
         file = open("to-do.txt", "w")
         file.writelines(items)
+        file.close()
         print("Item added")
     elif user_input == "show":
+        file = open("to-do.txt", "r")
+        items = file.readlines()
+        file.close()
         for i, item in enumerate(items):
-            show_output = f"{i+1}) {item}"
-            print(show_output)
+            print(f"{i+1}: {item}")
     elif user_input == "exit":
+        print("Exiting!")
         break
     elif user_input == "complete":
         for i, item in enumerate(items):
@@ -37,6 +43,3 @@ while True:
             items[edit_num-1] = edit_item
     else:
         print("Invalid commands")
-
-
-
