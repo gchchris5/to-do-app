@@ -1,4 +1,3 @@
-Wash
-Clean
 Mop
-Sweep
+Vacuum
+Dust
