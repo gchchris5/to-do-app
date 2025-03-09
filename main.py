@@ -32,11 +32,13 @@ while True:
             item = item.strip('\n')
             show_output = f"{i+1}) {item}"
             print(show_output)
-        cmp_item = input("Select the number of the item to complete: ")
-        cmp_item = int(cmp_item)
-        items.pop(cmp_item-1)
+        cmp_item = int(input("Select the number of the item to complete: "))
+        cmp_item = cmp_item - 1
+        todo_completed = items[cmp_item].strip("\n")
+        items.pop(cmp_item)
         with open("to-do.txt", "w") as file:
             file.writelines(items)
+        print(f"Item {todo_completed} removed from list.")
     # Edit an existing item in the to do list
     elif user_input == "edit":
         with open("to-do.txt", "r") as file:
