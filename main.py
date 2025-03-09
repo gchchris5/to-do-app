@@ -3,52 +3,42 @@ while True:
     user_input = input(prompt)
     user_input = user_input.strip()
     user_input = user_input.lower()
+
     # Add an item to the to do list
-    if user_input == "add":
-        add_item = input("Add an item: ") + '\n'
+    if user_input.startswith("add"):
+        add_item = user_input[4:] + "\n"
         with open("to-do.txt", "r") as file:
             items = file.readlines()
         items.append(add_item.capitalize())
         with open("to-do.txt", "w") as file:
             file.writelines(items)
         print("Item added")
+
     # Show items in the to do list
-    elif user_input == "show":
+    elif "show" in user_input:
         with open("to-do.txt", "r") as file:
             items = file.readlines()
         # new_items = [item.strip("\n") for item in items]
         for i, item in enumerate(items):
             item = item.strip("\n")
             print(f"{i+1}: {item}")
-    # Exit the application
-    elif user_input == "exit":
-        print("Exiting!")
-        break
+
     # Mark an item as complete, removes from to do list
-    elif user_input == "complete":
+    elif user_input.startswith("complete"):
         with open("to-do.txt", "r") as file:
             items = file.readlines()
-        for i, item in enumerate(items):
-            item = item.strip('\n')
-            show_output = f"{i+1}) {item}"
-            print(show_output)
-        cmp_item = int(input("Select the number of the item to complete: "))
-        cmp_item = cmp_item - 1
+        cmp_item = int(user_input[9:]) - 1
         todo_completed = items[cmp_item].strip("\n")
         items.pop(cmp_item)
         with open("to-do.txt", "w") as file:
             file.writelines(items)
         print(f"Item {todo_completed} removed from list.")
+
     # Edit an existing item in the to do list
-    elif user_input == "edit":
+    elif user_input.startswith("edit"):
         with open("to-do.txt", "r") as file:
             items = file.readlines()
-        edit_str = "Choose the number of the item to edit: "
-        for i, item in enumerate(items):
-            item = item.strip('\n')
-            show_output = f"{i+1}) {item}"
-            print(show_output)
-        edit_num = input(edit_str)
+        edit_num = int(user_input[5:])
         edit_num = int(edit_num)
         if edit_num < 1 or edit_num > len(items):
             print("Invalid Index")
@@ -57,5 +47,12 @@ while True:
             items[edit_num-1] = edit_item + '\n'
         with open("to-do.txt", "w") as file:
             file.writelines(items)
+        print("Item edited")
+
+    # Exit the application
+    elif user_input == "exit":
+        print("Exiting!")
+        break
+
     else:
         print("Invalid commands")
