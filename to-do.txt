@@ -1,4 +1,5 @@
 Mop
 Vacuum
-Dust
-Clean
+Clean the kitchen
+Dust fans
+Wipe counters
