@@ -1,6 +1,4 @@
 Mop
 Vacuum
 Dust
-Wash
 Clean
-Take trash out
