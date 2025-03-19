@@ -1,5 +1,7 @@
+from functions import get_items, write_items, welcome_message
 
 
+welcome_message()
 while True:
     prompt = "Type add, show, edit, complete or exit: "
     inv_cmd = "Invalid Command."
@@ -10,7 +12,7 @@ while True:
     # Add an item to the to do list
     if user_input.startswith("add"):
         add_item = user_input[4:] + "\n"
-        items = get_items(filepath)
+        items = get_items()
         items.append(add_item.capitalize())
         write_items(items)
         print("Item added")
@@ -30,7 +32,7 @@ while True:
             cmp_item = int(user_input[9:]) - 1
             todo_completed = items[cmp_item].strip("\n")
             items.pop(cmp_item)
-            write_items(item)
+            write_items(items)
             print(f"Item {todo_completed} removed from list.")
         except ValueError:
             print(inv_cmd)
