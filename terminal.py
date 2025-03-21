@@ -1,5 +1,4 @@
-from functions import get_items, write_items, welcome_message
-
+from functions import *
 
 welcome_message()
 while True:
