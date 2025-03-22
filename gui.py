@@ -6,10 +6,14 @@ sg.theme("LightGrey")
 clock_label = sg.Text("", key="clock")
 title_label = sg.Text("Manage Your To-do List")
 input_box = sg.InputText(tooltip="Enter item", key="new_item")
-add_button = sg.Button("Add")
-exit_button = sg.Button("Exit")
-edit_button = sg.Button("Edit")
-complete_button = sg.Button("Complete")
+add_button = sg.Button(size=5, image_source="Assets/add.png", mouseover_colors="LightBlue3",
+                       tooltip="Add item", key="Add")
+exit_button = sg.Button(font=("Helvetica", 20), button_text="Exit", size=7,
+                        mouseover_colors="LightBlue3", key="Exit")
+edit_button = sg.Button(font=("Helvetica", 20), button_text="Edit", size=7,
+                        mouseover_colors="LightBlue3", key="Edit")
+complete_button = sg.Button(font=("Helvetica", 20), button_text="Complete", size=7,
+                            mouseover_colors="LightBlue3", key="Complete")
 list_box = sg.Listbox(values=functions.get_items(), key="list_item",
                       enable_events=True, size=(45, 10))
 layout = [[title_label],
