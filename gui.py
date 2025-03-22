@@ -1,7 +1,14 @@
 import FreeSimpleGUI as sg
 import functions
 import time
+import os
 
+# Create file if it does not exist
+if not os.path.exists("to-do.txt"):
+    with open("to-do.txt", "w") as file:
+        pass
+
+# Create GUI
 sg.theme("LightGrey")
 clock_label = sg.Text("", key="clock")
 title_label = sg.Text("Manage Your To-do List")
@@ -25,6 +32,8 @@ layout = [[title_label],
 window = sg.Window(title="To-do App",
                    layout=layout,
                    font=("Helvetica", 20))
+
+# Run GUI
 while True:
     event, values = window.read(timeout=200)
     window["clock"].update(value=time.strftime("%A, %B %d, %Y %I:%M:%S %p"))
